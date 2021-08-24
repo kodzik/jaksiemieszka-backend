@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'books'
 ]
 
 MIDDLEWARE = [
@@ -81,9 +82,9 @@ DATABASES = {
     }
 }
 
-GRAPHENE = {
-    "SCHEMA": "django_root.schema.schema"
-}
+# GRAPHENE = {
+#     "SCHEMA": "django_root.schema.schema"
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
