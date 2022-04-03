@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books',
     'jaksiemieszka',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework'
 ]
 
 CORS_ORIGIN_WHITELIST = ( 'http://localhost:4200', )
@@ -135,7 +136,7 @@ STATIC_ROOT = BASE_DIR / 'static-root'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-print(STATICFILES_DIRS)
+# print(STATICFILES_DIRS)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

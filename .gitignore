@@ -1,1 +1,8 @@
+.vscode
+
+
 /.env
+*.sqlite3
+*.sql
+*.db*
+*.cpython-39.pyc
