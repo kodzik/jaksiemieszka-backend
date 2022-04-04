@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class CommentRating(models.Model):
+    # id = models.IntegerField(primary_key=True, editable=False)
     location = models.IntegerField()
     air = models.IntegerField()
     noise = models.IntegerField()

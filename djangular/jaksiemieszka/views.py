@@ -6,7 +6,7 @@ from rest_framework import status
 from jaksiemieszka.models import User
 
 from jaksiemieszka.models import Comment
-from .serializers import CommentSerializer, UserSerializer
+from .serializers import CommentSerializer, LocationSerializer, UserSerializer
 
 class UserViews(APIView):
     def get(self, request):
@@ -40,7 +40,7 @@ class CommentViews(APIView):
 
     def post(self, request):
         serializer = CommentSerializer(data=request.data)
-        print(serializer.to_internal_value)
+        print(serializer.initial_data)
         
         if serializer.is_valid():
             serializer.save()
