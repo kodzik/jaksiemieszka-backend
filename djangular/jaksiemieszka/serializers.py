@@ -41,10 +41,11 @@ class CommentSerializer(serializers.ModelSerializer):
 
     location = LocationSerializer( source='*')#
     rating = RatingSerializer()
+    # text_content = serializers.CharField()
 
     class Meta:
         model = Comment
-        fields = ('id', 'username', 'location', 'rating', 'when_added', 'last_modified')
+        fields = ('id', 'username', 'location', 'rating', 'when_added', 'last_modified', 'text_content')
 
     def create(self, validated_data):
         username = User.objects.first() #TODO get active user username
