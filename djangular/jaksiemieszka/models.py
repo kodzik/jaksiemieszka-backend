@@ -19,6 +19,7 @@ class Comment(models.Model):
     location_lat = models.FloatField()
     location_lng = models.FloatField()
     rating = models.ForeignKey(CommentRating, on_delete=models.CASCADE)
+    text_content = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
