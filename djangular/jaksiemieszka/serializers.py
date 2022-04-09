@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CommentRating, Comment
+from .models import Address, CommentRating, Comment
 from django.contrib.auth.models import User
 
 
@@ -8,6 +8,21 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+        fields = ('__all__')
+
+class AddressSerializer(serializers.ModelSerializer):
+
+    def to_internal_value(self, data):
+        return {
+            'road': data['road'], 
+            'house_number': data['house_number'], 
+            'suburb': data['suburb'], 
+            'neighbourhood': data['neighbourhood'],
+            'quarter': data['quarter']
+        }
+
+    class Meta:
+        model = Address
         fields = ('__all__')
 
 class RatingSerializer(serializers.ModelSerializer):
@@ -41,15 +56,18 @@ class CommentSerializer(serializers.ModelSerializer):
 
     location = LocationSerializer( source='*')#
     rating = RatingSerializer()
+    address = AddressSerializer()
     # text_content = serializers.CharField()
 
     class Meta:
         model = Comment
-        fields = ('id', 'username', 'location', 'rating', 'when_added', 'last_modified', 'text_content')
+        fields = ('id', 'username', 'location', 'rating', 'when_added', 'last_modified', 'text_content', 'address')
 
     def create(self, validated_data):
         username = User.objects.first() #TODO get active user username
         rating_data = validated_data.pop('rating')
+        address_data = validated_data.pop('address')
         rating = CommentRating.objects.create(**rating_data)
-        comment = Comment.objects.create(username=username, rating=rating, **validated_data)
+        address = Address.objects.create(**address_data)
+        comment = Comment.objects.create(username=username, rating=rating, address=address, **validated_data)
         return comment

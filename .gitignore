@@ -1,6 +1,6 @@
 .vscode
 
-
+*db.sqlite3*
 /.env
 *.sqlite3
 *.sql
