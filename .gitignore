@@ -1,9 +1,17 @@
 .vscode
 .idea
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+djangular/jaksiemieszka/__pycache__/
+djangular/books/__pycache__/
+
 *db.sqlite3*
 /.env
 *.sqlite3
 *.sql
 *.db*
 *.cpython-39.pyc
+*.pyc
