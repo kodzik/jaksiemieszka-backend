@@ -3,6 +3,13 @@
 
 *db.sqlite3*
 /.env
+
+/djangular/djangular/__pycache__/*
+/djangular/books/__pycache__/*
+/djangular/books/migrations/__pycache__/*
+/djangular/jaksiemieszka/__pycache__/*
+/djangular/jaksiemieszka/migrations/__pycache__/*
+
 *.sqlite3
 *.sql
 *.db*

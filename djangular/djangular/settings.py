@@ -46,6 +46,11 @@ INSTALLED_APPS = [
 
 CORS_ORIGIN_WHITELIST = ( 'http://localhost:4200', )
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,7 +136,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static-root'
 STATIC_ROOT = BASE_DIR / 'static-root'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
