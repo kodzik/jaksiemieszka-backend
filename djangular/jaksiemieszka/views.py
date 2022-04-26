@@ -9,6 +9,7 @@ from jaksiemieszka.models import User
 
 from jaksiemieszka.models import Comment
 from .serializers import CommentSerializer, LocationSerializer, UserSerializer
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 class UserViews(APIView):
     def get(self, request):
@@ -56,4 +57,15 @@ class HelloView(APIView):
 
     def get(self, request):
         content = {'message': 'Hello, World!'}
+        return Response(content)
+
+class ExampleView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        content = {
+            'user': str(request.user),  # `django.contrib.auth.User` instance.
+            'auth': str(request.auth),  # None
+        }
         return Response(content)
