@@ -14,3 +14,7 @@
 *.sql
 *.db*
 *.cpython-39.pyc
+<<<<<<< Updated upstream
+=======
+*.cpython-38.pyc
+>>>>>>> Stashed changes
