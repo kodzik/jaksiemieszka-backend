@@ -12,6 +12,9 @@ from .serializers import CommentSerializer, LocationSerializer, UserSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 class UserViews(APIView):
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request):
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
@@ -42,6 +45,8 @@ class CommentViews(APIView):
     #     return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 
     def post(self, request):
+        permission_classes = (IsAuthenticated,)
+
         serializer = CommentSerializer(data=request.data)
         print(serializer.initial_data)
         
@@ -60,12 +65,15 @@ class HelloView(APIView):
         return Response(content)
 
 class ExampleView(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
+        user = User.objects.get(username=request.user)
+        serializer = UserSerializer(user)
         content = {
-            'user': str(request.user),  # `django.contrib.auth.User` instance.
+
+            'user': serializer.data,  # `django.contrib.auth.User` instance.
             'auth': str(request.auth),  # None
         }
         return Response(content)
