@@ -3,13 +3,6 @@ from .models import Address, CommentRating, Comment
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(read_only=True, max_length=100)
-
-    class Meta:
-        model = User
-        fields = ('__all__')
-
 class AddressSerializer(serializers.ModelSerializer):
 
     def to_internal_value(self, data):

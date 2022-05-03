@@ -21,18 +21,17 @@ from graphene_django.views import GraphQLView
 from books.schema import schema
 from django.views.decorators.csrf import csrf_exempt
 
-from jaksiemieszka.views import UserViews, ExampleView
-from rest_framework_simplejwt import views as jwt_views
+# from jaksiemieszka.views import UserViews, ExampleView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('api/', include('jaksiemieszka.urls')),
-    path('api/token/', csrf_exempt(jwt_views.TokenObtainPairView.as_view()), name='token_obtain_pair'),
-    path('api/token/refresh/', csrf_exempt(jwt_views.TokenRefreshView.as_view()), name='token_refresh'),
-    path('api/user/', csrf_exempt(ExampleView.as_view()), name='user'),
-
+    path('account/', include('account.urls')),
+    # path('api/token/', csrf_exempt(jwt_views.TokenObtainPairView.as_view()), name='token_obtain_pair'),
+    # path('api/token/refresh/', csrf_exempt(jwt_views.TokenRefreshView.as_view()), name='token_refresh'),
+    # path('api/user/', csrf_exempt(ExampleView.as_view()), name='user'),
 
     path("books/", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
     url(r'^.*', TemplateView.as_view(template_name="index.html"), name='home'),
