@@ -24,8 +24,8 @@ class CommentViews(APIView):
     def post(self, request):
         permission_classes = (IsAuthenticated,)
 
-        serializer = CommentSerializer(data=request.data)
-        print(serializer.initial_data)
+        serializer = CommentSerializer(data=request.data) #user=request.user
+        print("Serializer initial_data:",serializer.initial_data)
         
         if serializer.is_valid():
             serializer.save()

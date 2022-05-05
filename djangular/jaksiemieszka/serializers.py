@@ -44,7 +44,7 @@ class LocationSerializer(serializers.Field):
 class CommentSerializer(serializers.ModelSerializer):
 
     id = serializers.UUIDField(read_only=True)
-    username = serializers.SlugRelatedField(read_only=True, slug_field='username')
+    username = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username') #read_only=True
     when_added = serializers.DateTimeField(read_only=True)
 
     location = LocationSerializer( source='*')#
@@ -57,7 +57,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'location', 'rating', 'when_added', 'last_modified', 'text_content', 'address')
 
     def create(self, validated_data):
-        username = User.objects.first() #TODO get active user username
+        username=validated_data.pop('username')
+        username = User.objects.get(username=username) #User.objects.first() #TODO get active user username  #
         rating_data = validated_data.pop('rating')
         address_data = validated_data.pop('address')
         rating = CommentRating.objects.create(**rating_data)
