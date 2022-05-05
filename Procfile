@@ -1,1 +1,1 @@
-web: gunicorn djangular.wsgi
+web: gunicorn djangular/djangular.wsgi

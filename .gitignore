@@ -17,6 +17,8 @@ djangular/books/__pycache__/
 /djangular/jaksiemieszka/migrations/__pycache__/*
 /djangular/account/__pycache__/*
 /djangular/account/migrations/__pycache__/*
+/djangular/static-root/
+
 *.sqlite3
 *.sql
 *.db*
