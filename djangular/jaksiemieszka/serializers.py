@@ -41,7 +41,7 @@ class LocationSerializer(serializers.Field):
         return {"location_lat": data['lat'], "location_lng": data['lng']}
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):#changed from HyperlinkedModelSerializer
 
     id = serializers.UUIDField(read_only=True)
     username = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field='username') #read_only=True
