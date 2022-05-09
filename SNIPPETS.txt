@@ -1,0 +1,1 @@
+heroku run python djangular/manage.py shell
